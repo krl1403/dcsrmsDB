@@ -65,5 +65,5 @@ CREATE TABLE IF NOT EXISTS assessment_weights (
 	exam_weight decimal(5,2)
 );
 
-INSERT INTO assessment_weights (assessment_weights_id, activity_weight, assignment_weight,project_weight, quiz_weight, exam_weight) 
+INSERT IGNORE INTO assessment_weights (assessment_weights_id, activity_weight, assignment_weight, project_weight, quiz_weight, exam_weight) 
 VALUES (1, 0.20, 0.20, 0.20, 0.20, 0.20);
