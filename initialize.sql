@@ -66,4 +66,4 @@ CREATE TABLE IF NOT EXISTS assessment_weights (
 );
 
 INSERT IGNORE INTO assessment_weights (assessment_weights_id, activity_weight, assignment_weight, project_weight, quiz_weight, exam_weight) 
-VALUES (1, 0.20, 0.20, 0.20, 0.20, 0.20);
+VALUES (1, 20, 20, 20, 20, 20);
