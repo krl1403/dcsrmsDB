@@ -6,7 +6,9 @@ CREATE TABLE IF NOT EXISTS user (
 	displayName varchar(50),
     email varchar(50),
     userPassword varchar(50),
-    verificationCode int
+    verificationCode int,
+    
+    CONSTRAINT unique_email UNIQUE (email)
 );
 
 CREATE TABLE IF NOT EXISTS student (
