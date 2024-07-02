@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS dcsrms;
 USE dcsrms;
 
 CREATE TABLE IF NOT EXISTS user (
+	user_id int PRIMARY KEY auto_increment,
 	displayName varchar(50),
     email varchar(50),
     userPassword varchar(50),
@@ -15,7 +16,10 @@ CREATE TABLE IF NOT EXISTS student (
 	middle_name VARCHAR (50),
     last_name VARCHAR (50),
     email VARCHAR (50),
-    gender VARCHAR (10)
+    gender VARCHAR (10),
+	user_id INT,
+    
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS course (
@@ -24,14 +28,19 @@ CREATE TABLE IF NOT EXISTS course (
     course_name VARCHAR (50),
     program_name VARCHAR (50),
     year int,
-    section int
+    section int,
+    user_id INT,
+    
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS enrollment (
 	enrollment_id int auto_increment primary key,
     student_id int NOT NULL,
     course_id int NOT NULL,
-
+	user_id INT,
+    
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
 	FOREIGN KEY (student_id) REFERENCES student(student_id),
     FOREIGN KEY (course_id) REFERENCES course(course_id)
 );
@@ -43,7 +52,9 @@ CREATE TABLE IF NOT EXISTS assessment (
     name VARCHAR (50),
     score INT, 
     max_score int,
+	user_id INT,
     
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
     FOREIGN KEY (enrollment_id) REFERENCES enrollment(enrollment_id)
 );
 
@@ -52,7 +63,9 @@ CREATE TABLE IF NOT EXISTS attendance (
     enrollment_id int,
     attendance_date date,
     attendance_status VARCHAR(20),
+	user_id INT,
     
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
     FOREIGN KEY (enrollment_id) REFERENCES enrollment(enrollment_id)
 );
 
